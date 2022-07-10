@@ -1,0 +1,11 @@
+en:  
+  sessions:
+    current:
+      home: 'Final Blog'
+      welcome: 'Welcome'
+      logout: 'Logout'
+      eng: 'English'
+      viet: 'Vietnamese'
+    views: 
+      login: "Login"
+      register: "Register"

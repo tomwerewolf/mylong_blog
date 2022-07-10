@@ -1,0 +1,25 @@
+en:
+  activerecord:
+    errors:
+      messages:
+        blank: "cannot be blank!"
+    models:
+      user: "User"
+    attributes:
+      user:
+        username: "Username"
+        first_name: "First Name"
+        last_name: "Last Name"
+        full_name: "Full name"
+        email: "Email"
+        birth_date: "Date of birth"
+        password: "Password"
+        password_confirmation: "Confirm password"
+        current_password: "Current password"
+  users:
+    views:
+      show:
+        update: 'Update'
+      new:
+        register: "Register"
+

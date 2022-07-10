@@ -1,11 +1,10 @@
-<%= render "languages/change" %>
-
 <h1>Login</h1>
 
 <%= form_for :session, url: login_path do |form| %>
+  <%= render "shared/flash" %>
   <div>
     <%= form.label :username %><br>
-    <%= form.text_field :username %><br>
+    <%= form.text_field :username_email %><br>
   </div>
 
   <div>
@@ -18,6 +17,6 @@
   </div>
 
   <div>
-    <%= link_to t("users.views.new.register"), new_user_path %>
+    <%= link_to "Register", new_user_path %>
   </div>
 <% end %>

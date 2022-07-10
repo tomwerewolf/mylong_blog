@@ -1,0 +1,8 @@
+vi: 
+  activerecord:
+    models:
+      category: "Thể loại"
+    attributes:
+      category:
+        name: "Thể loại"
+

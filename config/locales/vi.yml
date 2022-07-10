@@ -1,0 +1,24 @@
+vi:
+  errors:
+    messages:
+      not_saved: "Không thể lưu!"
+  date:
+    formats:
+      default: "%d-%m-%Y"
+      short: "%b %d"
+      long: "%B %d, %Y"
+  views:  
+    pagination:
+      first: "Trang đầu"
+      last: "Trang cuối"
+      previous: "Trước"
+      next: "Sau"
+  helpers:
+    page_entries_info:
+      one_page:
+        display_entries:
+          zero: "Không tìm thấy %{entry_name} nào"
+          one: "Đang hiển thị <b>1</b> %{entry_name}"
+          other: "Đang hiển thị <b>tất cả %{count}</b> %{entry_name}"
+      more_pages:
+        display_entries: "Đang hiển thị %{entry_name} <b>%{first}&nbsp;-&nbsp;%{last}</b> trên <b>%{total}</b>"    

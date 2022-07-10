@@ -1,0 +1,23 @@
+  <h1>Update Password</h1>
+  <%= form_with model: @user, url: edit_password_path, data: { turbo: false } do |form| %>
+  <%= render "shared/flash"%>
+  <%= render "shared/error_messages", resource: @user %>
+    <div>
+      <%= form.label :password %><br>
+      <%= form.password_field :password %><br>
+    </div>
+
+    <div>
+      <%= form.label :password_confirmation %><br>
+      <%= form.password_field :password_confirmation %><br>
+    </div>
+
+    <div>
+      <%= form.label :current_password %><br>
+      <%= form.password_field :current_password %><br>
+    </div>
+
+    <div>
+      <%= form.submit t("users.views.show.update") %>
+    </div>
+<% end %> 

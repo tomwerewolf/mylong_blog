@@ -1,0 +1,15 @@
+vi:
+  activerecord:
+    models:
+      comment: "Bình luận"
+    attributes:
+      comment:
+        body: "Nội dung"
+  comments:  
+    views:
+      cmt: "Bình luận"
+      cmter: "Tài khoản"
+      add: "Viết bình luận"
+      create: "Gửi bình luận"
+      del: "Xóa"
+

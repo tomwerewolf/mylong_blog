@@ -3,6 +3,20 @@ Rails.application.routes.draw do
 
   # Defines the root path route ("/")
   root "articles#index"
+  
+  get "profile", to: "users#show"
 
   resources :users
+
+  get "login", to: "sessions#new"
+  post "login", to: "sessions#create"
+  delete "logout", to: "sessions#destroy"
+
+  get "my_posts", to: "articles#my_posts"
+
+  get "password", to: "passwords#edit", as: "edit_password"
+  patch "password", to: "passwords#update"
+
+  resources :articles
+
 end

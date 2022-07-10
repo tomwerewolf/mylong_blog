@@ -1,0 +1,27 @@
+en: 
+  activerecord:
+    models:
+      article: "Article"
+    attributes:
+      article:
+        title: "Title"
+        body: "Body"
+        status: "Status"
+  articles:   
+    views:
+      my_post: "My posts"
+      index:
+        head: 'Articles'
+        search: 'Search'
+        new: 'Create new article'
+        count:
+          one: "Our blog has %{count} article and counting!"
+          other: "Our blog has %{count} articles and counting!"
+      show:
+        edit: "Edit"
+        del: "Delete"
+        confirm: "Are you sure you want to delete?"
+      search:
+        form: "Search"
+        by_title: "Title"
+        by_cat: "Category"  

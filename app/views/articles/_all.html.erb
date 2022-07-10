@@ -1,0 +1,13 @@
+<h1><%= t("articles.views.index.head") %></h1>
+<ul>
+  <% articles.each do |article| %>
+    <% unless article.archived? %>
+      <li>
+        <%= link_to article.title, article %>
+      </li>
+    <% end %>
+  <% end %>
+  
+  <%= paginate articles %><br/>
+  <%= page_entries_info articles %>
+</ul>

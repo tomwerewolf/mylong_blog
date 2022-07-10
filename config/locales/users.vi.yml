@@ -1,0 +1,22 @@
+vi:
+  activerecord:
+    models:
+      user: "Người dùng"
+    attributes:
+      user:
+        username: "Tên đăng nhập"
+        first_name: "Tên"
+        last_name: "Họ"
+        full_name: "Họ tên"
+        email: "Email"
+        birth_date: "Ngày sinh"
+        password: "Mật khẩu"
+        password_confirmation: "Nhập lại mật khẩu"
+        current_password: "Mật khẩu hiện tại"
+  users:
+    views:
+      show:
+        update: 'Cập nhật'
+      new:
+        register: "Đăng ký"
+
