@@ -1,0 +1,40 @@
+<%= form_with model: @user do |form| %>
+  <div>
+    <%= form.label t(".username") %><br>
+    <%= form.text_field :username %><br>
+  </div>
+
+  <div>
+    <%= form.label t(".first_name") %><br>
+    <%= form.text_field :first_name %><br>
+  </div>
+
+  <div>
+    <%= form.label t(".last_name") %><br>
+    <%= form.text_field :last_name %><br>
+  </div>
+
+  <div>
+    <%= form.label t(".email") %><br>
+    <%= form.text_field :email %><br>
+  </div>
+
+  <div>
+    <%= form.label t(".birthdate") %><br>
+    <%= form.date_field :birthdate %><br>
+  </div>
+
+  <div>
+    <%= form.label t(".password") %><br>
+    <%= form.password_field :password %><br>
+  </div>
+
+    <div>
+    <%= form.label t(".password_comfirmation") %><br>
+    <%= form.password_field :password_confirmation %><br>
+  </div>
+
+  <div>
+    <%= form.submit %>
+  </div>
+<% end %>

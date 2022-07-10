@@ -1,0 +1,7 @@
+<div>
+  <label for=""> <%= t "sessions.current.welcome" %> </label>
+  <%= link_to current_user.name, profile_path %>
+</div>
+<%= link_to t("sessions.current.home"), articles_path %>
+<%= link_to t("sessions.current.logout"), logout_path, data: { turbo_method: :delete } %>
+

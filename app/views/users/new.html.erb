@@ -1,0 +1,45 @@
+<%= link_to t("sessions.current.eng"), locale:"en" %>
+<%= link_to t("sessions.current.viet"), locale:"vi" %>
+
+<h1>Register</h1>
+
+<%= form_with model: @user do |form| %>
+  <div>
+    <%= form.label :username %><br>
+    <%= form.text_field :username %><br>
+  </div>
+
+  <div>
+    <%= form.label :name %><br>
+    <%= form.text_field :name %><br>
+  </div>
+
+  <div>
+    <%= form.label :email %><br>
+    <%= form.text_field :email %><br>
+  </div>
+
+  <div>
+    <%= form.label :birthdate %><br>
+    <%= form.date_select :birthdate , start_year: 1970 %><br>
+  </div>
+
+  <div>
+    <%= form.label :avatar %><br>
+    <%= form.file_field :avatar %>
+  </div>
+
+  <div>
+    <%= form.label :password %><br>
+    <%= form.password_field :password %><br>
+  </div>
+
+    <div>
+    <%= form.label :password_confirmation %><br>
+    <%= form.password_field :password_confirmation %><br>
+  </div>
+
+  <div>
+    <%= form.submit t("users.views.new.register") %>
+  </div>
+<% end %>

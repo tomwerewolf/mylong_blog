@@ -1,0 +1,23 @@
+<%= render "languages/change" %>
+
+<h1>Login</h1>
+
+<%= form_for :session, url: login_path do |form| %>
+  <div>
+    <%= form.label :username %><br>
+    <%= form.text_field :username %><br>
+  </div>
+
+  <div>
+    <%= form.label :password %><br>
+    <%= form.password_field :password %><br>
+  </div>
+
+  <div>
+    <%= form.submit t("sessions.views.login")%>
+  </div>
+
+  <div>
+    <%= link_to t("users.views.new.register"), new_user_path %>
+  </div>
+<% end %>
