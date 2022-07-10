@@ -35,7 +35,7 @@
           </ul>
           <ul class="nav navbar-nav navbar-right">
             <% if logged_in? %>
-            <li><%#= link_to "Categories", categories_path %></li>
+            <li><%= link_to "Categories", categories_path %></li>
               <li><%= link_to t("articles.views.my_post"), my_posts_path %></li>
               <li><%= link_to current_user.username, profile_path %></li>
               <li><%= link_to t("sessions.current.logout"), logout_path, data: { turbo_method: :delete } %></li>

@@ -17,6 +17,9 @@ Rails.application.routes.draw do
   get "password", to: "passwords#edit", as: "edit_password"
   patch "password", to: "passwords#update"
 
+  get '/categories/:name', to: 'articles#category_posts', as: 'category_posts'
+  resources :categories
+
   resources :articles
 
 end

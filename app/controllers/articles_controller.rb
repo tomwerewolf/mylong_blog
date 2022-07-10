@@ -60,11 +60,11 @@ class ArticlesController < ApplicationController
   end
 
   def my_posts
-    @articles = current_user.articles.page(params[:page]).per(4)
+    @articles = current_user.articles.page(params[:page]).per(5)
   end
 
   def category_posts
-    @articles = Articls.where(category_id: params[:id]).page(params[:page]).per(5)
+    @articles = Article.where(category_id: params[:id]).page(params[:page]).per(5)
   end  
 
   private

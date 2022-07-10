@@ -1,6 +1,8 @@
 class User < ApplicationRecord
   has_secure_password
 
+  has_many :articles, dependent: :destroy 
+
   validates :first_name, :last_name, presence: true
   validates :email, :username, presence: true, uniqueness: true
   before_validation :fill_full_name
