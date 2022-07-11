@@ -42,7 +42,13 @@ class UsersController < ApplicationController
       flash[:success] = "Profile updated!"
       redirect_to show
     end  
-  end  
+  end
+  
+  def posts
+    #@articles = Article.where(user_id: params[:id]).page(params[:page]).per(5)
+    @user = User.find(params[:id])
+    @articles = @user.articles.page(params[:page]).per(5)
+  end 
   
   private
   def user_params

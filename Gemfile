@@ -50,6 +50,8 @@ gem "image_processing", "~> 1.2"
 
 gem "kaminari"
 
+gem "rolify"
+
 group :development, :test do
   gem 'pry-byebug'
   # See https://guides.rubyonrails.org/debugging_rails_applications.html#debugging-with-the-debug-gem
