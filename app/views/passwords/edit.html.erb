@@ -1,4 +1,4 @@
-  <h1>Update Password</h1>
+  <h1><%= t("users.views.reset") %></h1>
   <%= form_with model: @user, url: edit_password_path, data: { turbo: false } do |form| %>
   <%= render "shared/flash"%>
   <%= render "shared/error_messages", resource: @user %>

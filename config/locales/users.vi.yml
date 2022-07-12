@@ -13,10 +13,16 @@ vi:
         password: "Mật khẩu"
         password_confirmation: "Nhập lại mật khẩu"
         current_password: "Mật khẩu hiện tại"
+        articles_count: "Bài viết"
   users:
     views:
-      show:
-        update: 'Cập nhật'
+      index:
+        action: "Tác vụ"
+        search: "Tìm kiếm"
+      search:
+        by_email: "Email/Tên đăng nhập"
       new:
         register: "Đăng ký"
+      forgot: "Quên mật khẩu"
+      reset: "Khôi phục mật khẩu" 
 

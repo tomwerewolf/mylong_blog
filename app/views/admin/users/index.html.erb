@@ -1,29 +1,31 @@
-<h1>Users list</h1>
+<h1><%= t("activerecord.models.user") %></h1>
 <%#= link_to "new", new_admin_user_path %>
 <br/>
 <table border="1">
   <tr>
-    <th>Admin</th>
-    <th>Username</th>
-    <th>Email</th>
-    <th>Fullname</th>
-    <th>Posts</th>
-    <th>Action</th>
+    <th><%= t("activerecord.attributes.user.admin") %></th>
+    <th><%= t("activerecord.attributes.user.username") %></th>
+    <th><%= t("activerecord.attributes.user.email") %></th>
+    <th><%= t("activerecord.attributes.user.full_name") %></th>
+    <th><%= t("activerecord.attributes.user.articles_count") %></th>
+    <th><%= t("users.views.index.action") %></th>
   </tr>
   <% @users.each do |user| %>
     <tr>
-      <th><%= user.admin %></th>
-      <th><%= user.username %></th>
-      <th><%= user.email %></th>
-      <th><%= user.full_name %></th>
-      <th><%= user.articles.length %></th>
-      <th><%#= link_to t("articles.views.show.edit"), edit_admin_user_path(user) %>
+      <td><%= user.admin %></td>
+      <td><%= user.username %></td>
+      <td><%= user.email %></td>
+      <td><%= user.full_name %></td>
+      <td><%= user.articles_count %></td>
+      <td><%#= link_to t("articles.views.show.edit"), edit_admin_user_path(user) %>
           <%= link_to t("articles.views.show.del"), admin_user_path(user), data: {
                               turbo_method: :delete,
                               turbo_confirm: t("articles.views.show.confirm")
-                              } %></th>
+                              } %></td>
     </tr>                          
   <% end %>
 </table>
-  <%= paginate @users %><br/>
-  <%= page_entries_info @users %>
+<%= paginate @users %><br/>
+<%= page_entries_info @users %>
+
+ <%= render "search" %> 

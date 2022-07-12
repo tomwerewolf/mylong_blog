@@ -7,13 +7,15 @@ en:
         title: "Title"
         body: "Body"
         status: "Status"
-  articles:   
+        comments_count: "Comments"
+  articles:  
     views:
       my_post: "My posts"
       index:
         head: 'Articles'
+        action: "Action"
         search: 'Search'
-        new: 'Create new article'
+        new: 'Create new'
         count:
           one: "Our blog has %{count} article and counting!"
           other: "Our blog has %{count} articles and counting!"
@@ -24,4 +26,6 @@ en:
       search:
         form: "Search"
         by_title: "Title"
-        by_cat: "Category"  
+        by_cat: "Category"
+        from: "Created from"
+        to: "to"  

@@ -3,14 +3,14 @@
 <%= form_for :session, url: login_path do |form| %>
   <%= render "shared/flash" %>
   <div>
-    <%= form.label :username %><br>
+    <%= form.label t("activerecord.attributes.user.username") %><br>
     <%= form.text_field :username_email %><br>
   </div>
 
   <div>
-    <%= form.label :password %><br>
+    <%= form.label t("activerecord.attributes.user.password") %><br>
     <%= form.password_field :password %><br>
-    <%= link_to "Forgot your password?", password_forgot_path %>
+    <%= link_to t("sessions.views.forgot"), password_forgot_path %>
   </div>
 
   <div>
@@ -18,6 +18,6 @@
   </div>
 
   <div>
-    <%= link_to "Register", new_user_path %>
+    <%= link_to t("sessions.views.register"), new_user_path %>
   </div>
 <% end %>

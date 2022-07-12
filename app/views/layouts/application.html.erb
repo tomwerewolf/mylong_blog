@@ -36,9 +36,9 @@
           <ul class="nav navbar-nav navbar-right">
             <% if logged_in? %>
               <% if admin? %>
-                <li><%= link_to "Users", admin_users_path %></li>
-                <li><%= link_to "Categories", admin_categories_path %></li>
-                <li><%= link_to "Articles", admin_articles_path %></li>
+                <li><%= link_to t("activerecord.models.user"), admin_users_path %></li>
+                <li><%= link_to t("activerecord.models.category"), admin_categories_path %></li>
+                <li><%= link_to t("activerecord.models.article"), admin_articles_path %></li>
               <% end %>
               <li><%= link_to t("articles.views.my_post"), my_posts_path %></li>
               <li><%= link_to current_user.username, profile_path %></li>
@@ -52,9 +52,11 @@
       </div>
     </nav>
 
-    <%= flash[:message] %>
-
     <%= yield %>
 
+    <footer class="container-fluid text-center">
+      <%= link_to t("sessions.current.eng"), locale:"en" %>
+      <%= link_to t("sessions.current.viet"), locale:"vi" %>
+    </footer>
   </body>
 </html>

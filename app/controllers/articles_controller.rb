@@ -4,13 +4,16 @@ class ArticlesController < ApplicationController
   include UsersHelper
   
   def index
-    @articles = Article.order(:created_at).where(status: :published).page(params[:page]).per(5)
+    @articles = Article.published.recent.page(params[:page]).per(5)
   end
 
   def show
     @article = load_article
+    if @article.personal?
+      raise ActiveRecord::RecordNotFound unless author?(@article)
+    end  
     @comments = Comment.includes(:user).where(article: @article)
-    #@author = @article.user
+    @author = @article.user
   end
 
   def new
@@ -21,6 +24,7 @@ class ArticlesController < ApplicationController
     @article = current_user.articles.new(article_params) 
 
     if @article.save
+      #ResizeImageJob.perform_later(@article)
       redirect_to article_path(@article)
     else
       render :new, status: :unprocessable_entity 
@@ -29,42 +33,32 @@ class ArticlesController < ApplicationController
 
   def edit
     @article = load_article
+    if @article.personal?
+      raise ActiveRecord::RecordNotFound unless author?(@article)
+    end 
   end
 
   def update
     @article = load_article
-  
-    if author?(@article)
-      if @article.update(article_params)
-        redirect_to article_path(@article)
-      else
-        render :edit, status: :unprocessable_entity
-      end  
-    else
-      flash.now[:alert] = "You don't have permission!"
+    if @article.update(article_params)
       redirect_to article_path(@article)
-    end
+    else
+      render :edit, status: :unprocessable_entity
+    end  
   end
 
   def search
-    @articles = Article.all
-    @articles = @articles.search_title(params[:title]) if params[:title].present?
-    @articles = @articles.search_cat(params[:category_id]) if params[:category_id].present?
-    @articles = @articles.search_range(params[:date1], params[:date2]) if params[:date1].present? && params[:date2].present?
-    @articles = @articles.page(params[:page]).per(4)
+    @articles = Article.published.recent
+    @articles = Articles::SearchService.new(articles: @articles, params: params).call
+    @articles = @articles.page(params[:page]).per(5)
     render :index
   end
 
   def destroy
-    #binding.pry
     @article = load_article
-    if author? @article
-      @article.destroy
-      redirect_to my_posts_path, status: :see_other
-    else 
-      flash.now[:alert] = "You don't have permission!"
-      redirect_to article_path(@article)
-    end  
+    @article.image.purge
+    @article.destroy
+    redirect_to my_posts_path, status: :see_other
   end
 
   def my_posts
@@ -72,15 +66,21 @@ class ArticlesController < ApplicationController
   end
 
   def category_posts
-    @articles = Article.where(category_id: params[:id]).page(params[:page]).per(5)
-  end  
+    @articles = Article.published.recent.where(category_id: params[:id]).page(params[:page]).per(5)
+  end 
 
   private
+
   def article_params
     params.require(:article).permit(:title, :body, :status, :category_id, :image)
+  end
+
+  def search_params
+    params.permit(:title, :category_id, :date_from, :date_to)
   end
 
   def load_article
     Article.find(params[:id])
   end
+  
 end

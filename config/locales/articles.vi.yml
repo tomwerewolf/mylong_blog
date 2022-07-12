@@ -7,21 +7,28 @@ vi:
         title: "Tiêu đề"
         body: "Nội dung"
         status: "Trạng thái"
+        comments_count: "Bình luận"
   articles:   
     views:
       my_post: "Bài viết của tôi"
       index:
+        title: "Tiêu đề"
+        status: "Trạng thái"
+        cmt: "Bình luận"
+        action: "Tác vụ"
         head: 'Bài viết'
         search: 'Tìm kiếm'
-        new: 'Tạo bài viết'
+        new: 'Tạo mới'
         count:
           one: "Blog chúng ta có %{count} bài viết!"
           other: "Blog chúng ta có %{count} bài viết!"
       show:
         edit: "Cập nhật"
-        del: "Xóa bài viết"
+        del: "Xóa"
         confirm: "Bạn có chắc chắn muốn xóa?"
       search:
         form: "Tìm kiếm"
         by_title: "Tiêu đề"
         by_cat: "Thể loại"
+        from: "Từ ngày"
+        to: "đến" 

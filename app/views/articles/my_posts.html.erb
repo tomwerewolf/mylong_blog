@@ -5,20 +5,22 @@
 <table border="1">
 
     <tr>
-      <th>Title</th>
-      <th>Status</th>
-      <th>Action</th>
+    <th><%= t("activerecord.attributes.article.admin") %></th>
+    <th><%= t("activerecord.attributes.article.status") %></th>
+    <th><%= t("activerecord.attributes.article.comments_count") %></th>
+    <th><%= t("articles.views.index.action") %></th>
     </tr>
       <% @articles.each do |article| %>
     <tr>
-      <th><%= article.title %></th>
-      <th><%= article.status %></th>
-      <th><%= link_to t("articles.views.show.edit"), edit_article_path(article) %> |
+      <td><%= article.title %></td>
+      <td><%= article.status %></td>
+      <td><%= article.comments_count %></td>
+      <td><%= link_to t("articles.views.show.edit"), edit_article_path(article) %> |
           <%= link_to t("articles.views.show.del"), article_path(article), data: {
                               turbo_method: :delete,
                               turbo_confirm: t("articles.views.show.confirm")
-                              } %></th>
-                              </tr>
+                              } %></td>
+    </tr>
   <% end %>
 </table>
   <%= paginate @articles %><br/>

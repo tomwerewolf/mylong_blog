@@ -16,10 +16,16 @@ en:
         password: "Password"
         password_confirmation: "Confirm password"
         current_password: "Current password"
+        articles_count: "Articles"
   users:
     views:
-      show:
-        update: 'Update'
+      index:
+        action: "Action"
+        search: "Search"
+      search:
+        by_email: "Email/Username"
       new:
         register: "Register"
+      forgot: "Forot your password"
+      reset: "Reset password" 
 

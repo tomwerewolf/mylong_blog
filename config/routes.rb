@@ -5,9 +5,15 @@ Rails.application.routes.draw do
   root "articles#index"
 
   namespace :admin do
-    resources :articles
+    resources :articles do
+      get :search, on: :collection
+    end  
+    
     resources :categories
-    resources :users
+    
+    resources :users do
+      get :search, on: :collection
+    end  
   end  
   
   get "profile", to: "users#show"
@@ -23,26 +29,19 @@ Rails.application.routes.draw do
   get "password", to: "passwords#edit", as: "edit_password"
   patch "password", to: "passwords#update"
 
-  # get 'password/reset', to: "password_resets#new"
-  # post 'password/reset', to: "password_resets#create"
-  # get 'password/reset/edit', to: "password_resets#edit"
-  # patch 'password/reset/edit', to: "password_resets#update"
-
   get 'password/forgot', to: "passwords#new"
   post 'password/forgot', to: "passwords#create"
   get 'password/reset', to: "passwords#forgot"
   patch 'password/reset', to: "passwords#reset"
 
   get '/categories/:id', to: 'articles#category_posts', as: 'category_posts'
-  #resources :categories
 
   resources :articles do
     resources :comments
-
-    collection do
-      get :search
-    end
-  
+    
+    get :search, on: :collection
   end  
+
+  mount LetterOpenerWeb::Engine, at: "/letter_opener" if Rails.env.development?
 
 end

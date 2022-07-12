@@ -9,3 +9,4 @@ en:
     views: 
       login: "Login"
       register: "Register"
+      forgot: "Forgot password"

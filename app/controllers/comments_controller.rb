@@ -1,6 +1,6 @@
 class CommentsController < ApplicationController
   def create
-    @article = Article.find(params[:article_id])
+    @article = load_article
     @comment = @article.comments.new(comment_params)
     @comment.user_id = current_user.id
     @comment.save
@@ -8,7 +8,7 @@ class CommentsController < ApplicationController
   end
 
   def destroy
-    @article = Article.find(params[:article_id])
+    @article = load_article
     @comment = @article.comments.find(params[:id])
     @comment.destroy
     redirect_to article_path(@article), status: 303
@@ -18,4 +18,8 @@ class CommentsController < ApplicationController
     def comment_params
       params.require(:comment).permit(:body)
     end
+
+    def load_article
+      Article.find(params[:article_id])
+    end  
 end

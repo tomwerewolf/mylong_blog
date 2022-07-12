@@ -1,11 +1,12 @@
 
-<h1>Welcome to blog.com, <%= @user.full_name %></h1>
+<h1><%= I18n.t("mails.welcome.welcome_to", user: @user.full_name) %></h1>
 <p>
-  You have successfully signed up to example.com,
-  your username is: <%= @user.username %>.<br>
+  <%= I18n.t("mails.welcome.success", user: @user.username) %><br>
 </p>
 <p>
-  To login to the site, just follow this link: <a> <%= @url %> </a>.
+  <%= I18n.t("mails.welcome.instruction", link: @url) %>
 </p>
-<p>Thanks for joining and have a great day!</p>
+<p>
+  <%= I18n.t("mails.welcome.thank") %>
+</p>
 

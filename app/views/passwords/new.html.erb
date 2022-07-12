@@ -1,4 +1,4 @@
-<h1>Forgot your password</h1>
+<h1><%= t("users.views.forgot") %></h1>
   <%= form_with url: password_forgot_path do |form| %>
 
     <div>
@@ -7,6 +7,6 @@
     </div>
 
     <div>
-      <%= form.submit "Reset password" %>
+      <%= form.submit t("users.views.reset") %>
     </div>
 <% end %> 

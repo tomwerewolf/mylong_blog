@@ -97,9 +97,6 @@ GEM
       activesupport (>= 5.0)
     i18n (1.10.0)
       concurrent-ruby (~> 1.0)
-    image_processing (1.12.2)
-      mini_magick (>= 4.9.5, < 5)
-      ruby-vips (>= 2.0.17, < 3)
     importmap-rails (1.1.2)
       actionpack (>= 6.0.0)
       railties (>= 6.0.0)
@@ -121,6 +118,15 @@ GEM
       activerecord
       kaminari-core (= 1.2.2)
     kaminari-core (1.2.2)
+    launchy (2.5.0)
+      addressable (~> 2.7)
+    letter_opener (1.8.1)
+      launchy (>= 2.2, < 3)
+    letter_opener_web (2.0.0)
+      actionmailer (>= 5.2)
+      letter_opener (~> 1.7)
+      railties (>= 5.2)
+      rexml
     loofah (2.18.0)
       crass (~> 1.0.2)
       nokogiri (>= 1.5.9)
@@ -196,9 +202,6 @@ GEM
     reline (0.3.1)
       io-console (~> 0.5)
     rexml (3.2.5)
-    rolify (6.0.0)
-    ruby-vips (2.1.4)
-      ffi (~> 1.12)
     rubyzip (2.3.2)
     sassc (2.4.0)
       ffi (~> 1.9)
@@ -257,16 +260,16 @@ DEPENDENCIES
   bootsnap
   capybara
   debug
-  image_processing (~> 1.2)
   importmap-rails
   jbuilder
   kaminari
+  letter_opener_web
+  mini_magick
   pg (~> 1.1)
   pry-byebug
   puma (~> 5.0)
   rails (~> 7.0.3)
   redis (~> 4.0)
-  rolify
   sassc-rails
   selenium-webdriver
   sprockets-rails

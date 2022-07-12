@@ -1,6 +1,6 @@
 class Admin::ArticlesController < AdminsController 
   def index
-    @articles = Article.order(:created_at).page(params[:page]).per(5)
+    @articles = Article.order(:updated_at).page(params[:page]).per(5)
   end
 
   def new
@@ -32,6 +32,13 @@ class Admin::ArticlesController < AdminsController
       flash.now[:alert] = "You don't have permission!"
       redirect_to article_path(@article)
     end  
+  end
+
+  def search
+    @articles = Article.all
+    @articles = Articles::SearchService.new(articles: @articles, params: params).call
+    @articles = @articles.page(params[:page]).per(5)
+    render :index
   end
  
 

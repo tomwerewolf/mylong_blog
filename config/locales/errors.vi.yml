@@ -1,0 +1,46 @@
+vi:
+  activerecord:
+    errors:
+      messages:
+        record_invalid: 'Validation failed: %{errors}'
+        restrict_dependent_destroy:
+          has_one: Cannot delete record because a dependent %{record} exists
+          has_many: Cannot delete record because dependent %{record} exist
+  errors:
+    format: "%{attribute} %{message}"
+    messages:
+      accepted: phải đồng ý
+      blank: không được để trống
+      confirmation: không khớp %{attribute}
+      empty: không được để trống
+      equal_to: phải bằng %{count}
+      even: phải là số chẵn
+      exclusion: được bảo lưu
+      greater_than: phải lớn hơn %{count}
+      greater_than_or_equal_to: phải lớn hơn hoặc bằng %{count}
+      inclusion: không có trong danh sách
+      invalid: không phù hợp
+      less_than: phải bé hơn %{count}
+      less_than_or_equal_to: phải bé hơn hoặc bằng %{count}
+      model_invalid: 'Validation failed: %{errors}'
+      not_a_number: không phải là số
+      not_an_integer: phải là số nguyên
+      odd: phải là số lẻ
+      other_than: phải khác %{count}
+      present: phải để trống
+      required: phải tồn tại
+      taken: đã bị trùng
+      too_long:
+        one: quá dài (tối đa 1 ký tự)
+        other: quá dài (tối đa %{count} 10 ký tự)
+      too_short:
+        one: quá ngắn (tối thiểu 1 ký tự)
+        other: quá ngắn (tối đa %{count} ký tự)
+      wrong_length:
+        one: sai kích thước (nên là 1 ký tự)
+        other: sai kích thước (nên là %{count} ký tự)
+    template:
+      body: 'Có vấn đề ở các trường:'
+      header:
+        one: 1 lỗi không thể lưu %{model} 
+        other: "%{count} lỗi không thể lưu %{model}"        

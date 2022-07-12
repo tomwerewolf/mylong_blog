@@ -43,7 +43,8 @@ class PasswordsController < ApplicationController
   def reset
     @user = User.find_by(password_reset_token: params[:reset_token])
     if @user.present? && valid_token?
-      if @user.update(password_params)
+      reset_params = password_params.merge(password_reset_token: nil, password_reset_token_created_at: nil)
+      if @user.update(reset_params)
         @user.update(password_reset_token: nil, password_reset_token_created_at: nil)
         flash[:success] = "Your password has been reset. Login again!"
         redirect_to login_path
@@ -57,6 +58,7 @@ class PasswordsController < ApplicationController
   end 
   
   private
+  
   def password_params
     params.require(:user).permit(:password, :password_confirmation)
   end
