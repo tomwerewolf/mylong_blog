@@ -5,6 +5,6 @@
   <%= label_tag t("articles.views.search.by_cat") %>
   <%= collection_select nil, :category_id, Category.order(:name), :id, :name, include_blank: true, selected: params[:category_id] %><br/>  
   <%= label_tag t("articles.views.search.by_cat") %> <%= date_field_tag :date_from, value = params[:date_from] %>
-  <%= label_tag t("articles.views.search.by_cat") %> <%= date_field_tag :date_to, value = params[:date_from] %> 
+  <%= label_tag t("articles.views.search.by_cat") %> <%= date_field_tag :date_to, value = params[:date_to] %> 
   <%= submit_tag t("articles.views.index.search") %>
 <% end %>
