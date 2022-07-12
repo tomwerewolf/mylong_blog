@@ -1,0 +1,23 @@
+<h1>Category list</h1>
+<%= link_to "new", new_admin_category_path %>
+<br/>
+<table border="1">
+  <tr>
+    <th>Name</th>
+    <th>Post</th>
+    <th>Action</th>
+  </tr>
+  <% @categories.each do |category| %>
+  <tr>
+    <th><%= category.name %></th>
+    <th><%= category.articles.length %></th>
+    <th><%= link_to t("articles.views.show.edit"), edit_admin_category_path(category) %> |
+        <%= link_to t("articles.views.show.del"), admin_category_path(category), data: {
+                              turbo_method: :delete,
+                              turbo_confirm: t("articles.views.show.confirm")
+                              } %></th>
+  </tr>                            
+  <% end %>
+</table>
+  <%= paginate @categories %><br/>
+  <%= page_entries_info @categories %>

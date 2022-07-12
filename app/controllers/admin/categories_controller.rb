@@ -1,8 +1,6 @@
-class CategoriesController < ApplicationController
-  #skip_before_action :authenticate_user!, only: [:show]
-
+class Admin::CategoriesController < AdminsController
   def index
-    @categories = Category.all.page(params[:page]).per(5)
+    @categories = Category.page(params[:page]).per(5)
   end
 
   def new

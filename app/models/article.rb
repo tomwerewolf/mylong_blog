@@ -2,12 +2,14 @@ class Article < ApplicationRecord
   belongs_to :category, counter_cache: true
   belongs_to :user, counter_cache: true
 
+  has_many :comments, dependent: :destroy
+
   has_one_attached :image
 
   validates :title, presence: true
   validates :body, presence: true, length: { minimum: 10 }
 
-  enum status: {published: "published", persional: "persional", archived: "archived"}
+  enum status: {published: "published", persional: "persional"}
 
   scope :search_title, -> (title) { where "title LIKE :title", title: "%#{title}%" }
   scope :search_cat, -> (category) { where category_id: category}

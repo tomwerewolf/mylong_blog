@@ -1,20 +1,24 @@
 <h1><%= t("articles.views.my_post") %></h1>
-<%#= render "all", articles: @articles %>
+
 <%= link_to t("articles.views.index.new"), new_article_path %>
 <br/>
 <table border="1">
-  <% @articles.each do |article| %>
+
     <tr>
       <th>Title</th>
+      <th>Status</th>
       <th>Action</th>
     </tr>
+      <% @articles.each do |article| %>
     <tr>
       <th><%= article.title %></th>
+      <th><%= article.status %></th>
       <th><%= link_to t("articles.views.show.edit"), edit_article_path(article) %> |
           <%= link_to t("articles.views.show.del"), article_path(article), data: {
                               turbo_method: :delete,
                               turbo_confirm: t("articles.views.show.confirm")
                               } %></th>
+                              </tr>
   <% end %>
 </table>
   <%= paginate @articles %><br/>

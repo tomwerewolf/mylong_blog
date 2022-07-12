@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_07_10_231936) do
+ActiveRecord::Schema[7.0].define(version: 2022_07_12_120426) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -50,11 +50,20 @@ ActiveRecord::Schema[7.0].define(version: 2022_07_10_231936) do
     t.bigint "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "comments_count"
   end
 
   create_table "categories", force: :cascade do |t|
     t.string "name"
     t.integer "articles_count"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "comments", force: :cascade do |t|
+    t.bigint "article_id"
+    t.bigint "user_id"
+    t.text "body"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -71,6 +80,9 @@ ActiveRecord::Schema[7.0].define(version: 2022_07_10_231936) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer "articles_count"
+    t.integer "comments_count"
+    t.string "password_reset_token"
+    t.datetime "password_reset_token_created_at"
   end
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"

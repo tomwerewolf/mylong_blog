@@ -11,13 +11,6 @@ class UsersController < ApplicationController
 
   def create
     @user = User.new(user_params)
-    # if @user.save
-    #   flash[:success] = "Register successfully!"
-    #   redirect_to login_path
-    # else
-    #   flash[:success] = "Register failed!"
-    #   redirect_to :new
-    # end
     respond_to do |format|
       if @user.save
         # Tell the UserMailer to send a welcome email after save
@@ -31,17 +24,15 @@ class UsersController < ApplicationController
     end
   end
 
-  def edit
-    #@user = current_user
-  end  
-
   def update
     #binding.pry
     @user = current_user
     if @user.update(user_params)
       flash[:success] = "Profile updated!"
       redirect_to show
-    end  
+    else
+      render :show, status: :unprocessable_entity
+    end
   end
   
   def posts

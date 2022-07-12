@@ -1,11 +1,16 @@
 class ArticlesController < ApplicationController
+  skip_before_action :require_login, except: [:new, :create, :edit, :update]
+
+  include UsersHelper
+  
   def index
-    @articles = Article.order(:created_at).page(params[:page]).per(5)
+    @articles = Article.order(:created_at).where(status: :published).page(params[:page]).per(5)
   end
 
   def show
-    @article = Article.find(params[:id])
-    @author = @article.user
+    @article = load_article
+    @comments = Comment.includes(:user).where(article: @article)
+    #@author = @article.user
   end
 
   def new
@@ -23,15 +28,18 @@ class ArticlesController < ApplicationController
   end
 
   def edit
-    @article = Article.find(params[:id])
+    @article = load_article
   end
 
   def update
-    @article = Article.find(params[:id])
+    @article = load_article
   
     if author?(@article)
-      @article.update(article_params)
-      redirect_to article_path(@article)
+      if @article.update(article_params)
+        redirect_to article_path(@article)
+      else
+        render :edit, status: :unprocessable_entity
+      end  
     else
       flash.now[:alert] = "You don't have permission!"
       redirect_to article_path(@article)
@@ -42,17 +50,17 @@ class ArticlesController < ApplicationController
     @articles = Article.all
     @articles = @articles.search_title(params[:title]) if params[:title].present?
     @articles = @articles.search_cat(params[:category_id]) if params[:category_id].present?
-    @articles = @articles.search_range(params[:date1],params[:date2]) if params[:date1].present? && params[:date2].present?
+    @articles = @articles.search_range(params[:date1], params[:date2]) if params[:date1].present? && params[:date2].present?
     @articles = @articles.page(params[:page]).per(4)
     render :index
   end
 
   def destroy
     #binding.pry
-    @article = Article.find(params[:id])
+    @article = load_article
     if author? @article
       @article.destroy
-      redirect_to root_path, status: :see_other
+      redirect_to my_posts_path, status: :see_other
     else 
       flash.now[:alert] = "You don't have permission!"
       redirect_to article_path(@article)
@@ -71,5 +79,8 @@ class ArticlesController < ApplicationController
   def article_params
     params.require(:article).permit(:title, :body, :status, :category_id, :image)
   end
- 
+
+  def load_article
+    Article.find(params[:id])
+  end
 end

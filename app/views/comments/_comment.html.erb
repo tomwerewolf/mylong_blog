@@ -1,0 +1,18 @@
+<p>
+  <strong><%= t "comments.views.cmter" %></strong>
+  <%= comment.user.username %>
+</p>
+
+<p>
+  <strong><%= t "comments.views.cmt" %></strong>
+  <%= comment.body %>
+</p>
+
+<p>
+  <% if current_user == comment.user %>
+  <%= link_to t("comments.views.del"), article_comment_path(comment) , data: {
+                turbo_method: :delete,
+                turbo_confirm: "Are you sure?"
+              } %>
+  <% end %>            
+</p>
