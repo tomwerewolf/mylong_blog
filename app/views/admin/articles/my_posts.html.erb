@@ -1,18 +1,17 @@
-<%= render "search" %>
-<h1><%= t("activerecord.models.article") %></h1>
+<h1><%= t("articles.views.my_post") %></h1>
+
+<%= link_to t("articles.views.index.new"), new_admin_article_path %>
 <br/>
 <table border="1" id="data-table">
-  <tr>
-    <th><%= t("activerecord.attributes.article.article") %></th>
-    <th><%= t("activerecord.attributes.article.article") %></th>
+    <tr>
+    <th><%= t("activerecord.attributes.article.admin") %></th>
     <th><%= t("activerecord.attributes.article.status") %></th>
     <th><%= t("activerecord.attributes.article.comments_count") %></th>
     <th><%= t("articles.views.index.action") %></th>
-  </tr>
-  <% @articles.each do |article| %>
+    </tr>
+      <% @articles.each do |article| %>
     <tr>
       <td><%= link_to article.title, admin_article_path(article) %></td>
-      <td><%= article.category.name %></td>
       <td><%= article.status %></td>
       <td><%= article.comments_count %></td>
       <td><%= link_to t("articles.views.show.edit"), edit_admin_article_path(article) %> |
@@ -20,11 +19,14 @@
                               turbo_method: :delete,
                               turbo_confirm: t("articles.views.show.confirm")
                               } %></td>
-    </tr>                          
+    </tr>
   <% end %>
 </table>
-<%= paginate @articles %><br/>
-<%= page_entries_info @articles %>
+  <%= paginate @articles %><br/>
+  <%= page_entries_info @articles %>
 
+
+
+ 
 
 

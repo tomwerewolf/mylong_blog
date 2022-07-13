@@ -2,6 +2,7 @@ vi:
   activerecord:
     models:
       user: "Người dùng"
+      users: "Người dùng"
     attributes:
       user:
         username: "Tên đăng nhập"
@@ -21,6 +22,9 @@ vi:
         search: "Tìm kiếm"
       search:
         by_email: "Email/Tên đăng nhập"
+      show:
+        update: "Cập nhật"
+        password: "Thay đổi mật khẩu" 
       new:
         register: "Đăng ký"
       forgot: "Quên mật khẩu"

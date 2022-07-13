@@ -2,6 +2,7 @@ vi:
   activerecord:
     models:
       comment: "Bình luận"
+      comments: "Bình luận"
     attributes:
       comment:
         body: "Nội dung"

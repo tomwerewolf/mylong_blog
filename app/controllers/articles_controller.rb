@@ -1,18 +1,17 @@
 class ArticlesController < ApplicationController
-  skip_before_action :require_login, except: [:new, :create, :edit, :update]
+  skip_before_action :require_login, except: %i[new create edit update]
 
   include UsersHelper
-  
+
   def index
     @articles = Article.published.recent.page(params[:page]).per(5)
   end
 
   def show
-    @article = load_article
-    if @article.personal?
-      raise ActiveRecord::RecordNotFound unless author?(@article)
-    end  
-    @comments = Comment.includes(:user).where(article: @article)
+    @article = Article.includes(comments: :user).find(params[:id])
+    raise ActiveRecord::RecordNotFound if @article.personal? && !author?(@article)
+
+    # @comments = Comment.includes(:user).where(article: @article)
     @author = @article.user
   end
 
@@ -21,21 +20,18 @@ class ArticlesController < ApplicationController
   end
 
   def create
-    @article = current_user.articles.new(article_params) 
+    @article = current_user.articles.new(article_params)
 
     if @article.save
-      #ResizeImageJob.perform_later(@article)
       redirect_to article_path(@article)
     else
-      render :new, status: :unprocessable_entity 
+      render :new, status: :unprocessable_entity
     end
   end
 
   def edit
     @article = load_article
-    if @article.personal?
-      raise ActiveRecord::RecordNotFound unless author?(@article)
-    end 
+    raise ActiveRecord::RecordNotFound if @article.personal? && !author?(@article)
   end
 
   def update
@@ -44,7 +40,7 @@ class ArticlesController < ApplicationController
       redirect_to article_path(@article)
     else
       render :edit, status: :unprocessable_entity
-    end  
+    end
   end
 
   def search
@@ -66,8 +62,8 @@ class ArticlesController < ApplicationController
   end
 
   def category_posts
-    @articles = Article.published.recent.where(category_id: params[:id]).page(params[:page]).per(5)
-  end 
+    @articles = Article.joins(:category).published.recent.where(category: { name: params[:name] }).page(params[:page]).per(5)
+  end
 
   private
 
@@ -82,5 +78,4 @@ class ArticlesController < ApplicationController
   def load_article
     Article.find(params[:id])
   end
-  
 end

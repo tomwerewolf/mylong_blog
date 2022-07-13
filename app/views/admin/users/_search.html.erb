@@ -1,6 +1,6 @@
 <h3><%= t("articles.views.index.search") %></h3>
 <%= form_tag search_admin_users_path, method: :get do |form| %>
   <%= label_tag t("users.views.search.by_email") %>
-  <%= text_field_tag :input, params[:input] %><br/>
+  <%= text_field_tag :input, params[:input] %>
   <%= submit_tag t("users.views.index.search") %>
 <% end %>

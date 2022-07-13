@@ -2,6 +2,7 @@ en:
   activerecord:
     models:
       article: "Article"
+      articles: "Articles"
     attributes:
       article:
         title: "Title"
@@ -23,6 +24,7 @@ en:
         edit: "Edit"
         del: "Delete"
         confirm: "Are you sure you want to delete?"
+        posts: "%{author}'s posts"
       search:
         form: "Search"
         by_title: "Title"

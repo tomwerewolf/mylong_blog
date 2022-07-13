@@ -1,6 +1,6 @@
-class UsersController < ApplicationController  
-  skip_before_action :require_login, only: [:new, :create]
-  
+class UsersController < ApplicationController
+  skip_before_action :require_login, only: %i[new create]
+
   def show
     @user = current_user
   end
@@ -25,24 +25,25 @@ class UsersController < ApplicationController
   end
 
   def update
-    #binding.pry
+    # binding.pry
     @user = current_user
     if @user.update(user_params)
-      flash[:success] = "Profile updated!"
+      flash[:success] = 'Profile updated!'
       redirect_to show
     else
       render :show, status: :unprocessable_entity
     end
   end
-  
+
   def posts
     @user = User.find(params[:id])
     @articles = @user.articles.page(params[:page]).per(5)
-  end 
-  
-  private
-  def user_params
-    params.require(:user).permit(:username, :first_name, :last_name, :email, :birth_date, :password, :password_confirmation)
   end
 
-end  
+  private
+
+  def user_params
+    params.require(:user).permit(:username, :first_name, :last_name, :email, :birth_date, :password,
+                                 :password_confirmation)
+  end
+end

@@ -2,6 +2,7 @@ en:
   activerecord:
     errors:
       messages:
+        adult: "must be over 18 years old"
         record_invalid: 'Validation failed: %{errors}'
         restrict_dependent_destroy:
           has_one: Cannot delete record because a dependent %{record} exists

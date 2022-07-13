@@ -21,4 +21,20 @@ en:
           one: "Displaying <b>1</b> %{entry_name}"
           other: "Displaying <b>all %{count}</b> %{entry_name}"
       more_pages:
-        display_entries: "Displaying %{entry_name} <b>%{first}&nbsp;-&nbsp;%{last}</b> of <b>%{total}</b> in total"      
+        display_entries: "Displaying %{entry_name} <b>%{first}&nbsp;-&nbsp;%{last}</b> of <b>%{total}</b> in total"  
+  flashs:
+    login:
+      success: "Login successfully"
+      fail: "Invalid username/password combination"
+    register:
+      success: "Register successfully" 
+    update:
+      success: "Updated"
+    logout:
+      success: "You are logged out"
+    password:
+      mail: "We sent you a mail to reset your password if your email exists"
+      reset: "Your password has been reset. Login again"
+      again: "Time out. Please make a new request"
+      wrong: "Current password is incorrect"
+

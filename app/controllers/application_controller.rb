@@ -17,16 +17,24 @@ class ApplicationController < ActionController::Base
     render :file => "#{Rails.root}/public/404.html",  :status => 404
   end
 
+  # def set_locale
+  #   if(params[:locale].present?)
+  #     cookies.permanent[:locale] = params[:locale]
+  #   end
+
+  #   locale = cookies[:locale].to_s.strip.to_sym
+
+  #   if I18n.available_locales.include?(locale)
+  #       I18n.locale = locale
+  #   end
+  # end
+
   def set_locale
-    if(params[:locale].present?)
-      cookies.permanent[:locale] = params[:locale]
-    end
+    I18n.locale = params[:locale] || I18n.default_locale
+  end
 
-    locale = cookies[:locale].to_s.strip.to_sym
-
-    if I18n.available_locales.include?(locale)
-        I18n.locale = locale
-    end
+  def default_url_options
+    {locale: I18n.locale}
   end
 
 end

@@ -2,6 +2,7 @@ vi:
   activerecord:
     models:
       category: "Danh mục"
+      categories: "Danh mục"
     attributes:
       category:
         name: "Danh mục"

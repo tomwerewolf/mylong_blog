@@ -1,50 +1,65 @@
-class Admin::ArticlesController < AdminsController 
-  def index
-    @articles = Article.order(:updated_at).page(params[:page]).per(5)
-  end
+module Admin
+  class ArticlesController < AdminBaseController
+    def index
+      @articles = Article.includes(:category).order(updated_at: :desc).page(params[:page]).per(5)
+    end
 
-  def new
-    @article = Article.new
-  end
+    def show
+      @article = load_article
+      #raise ActiveRecord::RecordNotFound if @article.personal? && !author?(@article)
 
-  def edit
-    @article = Article.find(params[:id])
-  end
+      @comments = Comment.includes(:user).where(article: @article)
+      @author = @article.user
+    end
 
-  def update
-    @article = Article.find(params[:id])
-  
-    if admin?
-      @article.update(article_params)
-      redirect_to index
-    else
-      flash.now[:alert] = "You don't have permission!"
-      redirect_to index
+    def new
+      @article = Article.new
+    end
+
+    def edit
+      @article = load_article
+    end
+
+    def update
+      @article = load_article
+
+      if admin? && @article.update(article_params)
+        redirect_to admin_articles_path
+      else
+        render :edit, status: :unprocessable_entity
+      end
+    end
+
+    def destroy
+      @article = load_article
+      if admin?
+        @article.destroy
+        redirect_to my_posts_path, status: :see_other
+      else
+        flash.now[:alert] = "You don't have permission!"
+        redirect_to admin_articles_path
+      end
+    end
+
+    def search
+      @articles = Article.all
+      @articles = Articles::SearchService.new(articles: @articles, params: params).call
+      @articles = @articles.page(params[:page]).per(5)
+      render :index
+    end
+
+    def my_posts
+      @articles = current_user.articles.page(params[:page]).per(5)
+    end
+
+    private
+
+    def article_params
+      params.require(:article).permit(:title, :body, :status, :category_id, :image)
+    end
+
+    def load_article
+      Article.find(params[:id])
     end
   end
-
-  def destroy
-    @article = Article.find(params[:id])
-    if admin?
-      @article.destroy
-      redirect_to my_posts_path, status: :see_other
-    else 
-      flash.now[:alert] = "You don't have permission!"
-      redirect_to article_path(@article)
-    end  
-  end
-
-  def search
-    @articles = Article.all
-    @articles = Articles::SearchService.new(articles: @articles, params: params).call
-    @articles = @articles.page(params[:page]).per(5)
-    render :index
-  end
- 
-
-  private
-  def article_params
-    params.require(:article).permit(:title, :body, :status, :category_id, :image)
-  end
- 
 end

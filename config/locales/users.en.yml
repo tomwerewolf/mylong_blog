@@ -1,10 +1,8 @@
 en:
   activerecord:
-    errors:
-      messages:
-        blank: "cannot be blank!"
     models:
       user: "User"
+      users: "Users"
     attributes:
       user:
         username: "Username"
@@ -24,6 +22,9 @@ en:
         search: "Search"
       search:
         by_email: "Email/Username"
+      show:
+        update: "Update"
+        password: "Change password"  
       new:
         register: "Register"
       forgot: "Forot your password"

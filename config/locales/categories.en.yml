@@ -2,6 +2,7 @@ en:
   activerecord:
     models:
       category: "Category"
+      categories: "Categories"
     attributes:
       category:
         name: "Category"
@@ -10,4 +11,4 @@ en:
     views:
       index:
         action: "Action"
-      new: "Thêm mới"         
+      new: "New category"         

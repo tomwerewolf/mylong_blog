@@ -9,9 +9,9 @@
 <p><%= @article.body %></p>
 
 <ul>
-  <% if logged_in? && current_user == @author %>
-    <li><%= link_to t("articles.views.show.edit"), edit_article_path(@article) %></li>
-    <li><%= link_to t("articles.views.show.del"), article_path(@article), data: {
+  <% if admin? || current_user == @author %>
+    <li><%= link_to t("articles.views.show.edit"), edit_admin_article_path(@article) %></li>
+    <li><%= link_to t("articles.views.show.del"), admin_article_path(@article), data: {
                               turbo_method: :delete,
                               turbo_confirm: t("articles.views.show.confirm")
                               } %></li>
@@ -19,7 +19,7 @@
 </ul>
 
 <h2><%= t("comments.views.cmt") %></h2>
-<%= render @article.comments %>
+<%= render @comments %>
 
 <h2><%= t("comments.views.add") %></h2>
 <%= render 'comments/form' %>

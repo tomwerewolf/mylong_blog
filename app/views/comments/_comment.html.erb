@@ -1,6 +1,6 @@
 <p>
   <strong><%= t "comments.views.cmter" %></strong>
-  <%= comment.user.username %>
+  <%= comment.user.full_name %> ( <%= link_to comment.user.username, user_posts_path(comment.user) %> )
 </p>
 
 <p>

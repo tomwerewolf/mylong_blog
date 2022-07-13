@@ -2,6 +2,7 @@ vi:
   activerecord:
     models:
       article: "Bài viết"
+      articles: "Bài viết"
     attributes:
       article:
         title: "Tiêu đề"
@@ -26,6 +27,7 @@ vi:
         edit: "Cập nhật"
         del: "Xóa"
         confirm: "Bạn có chắc chắn muốn xóa?"
+        posts: "Bài viết của %{author}"
       search:
         form: "Tìm kiếm"
         by_title: "Tiêu đề"
