@@ -2,6 +2,8 @@
 <%= render "shared/error_messages", resource: article %>
   <% if article.image.attached? %>
     <%= image_tag article.image, height: 200 %><br>
+    <%= form.label :delete_image %>
+    <%= form.check_box :delete_image, { checked: false }, "delete", "keep" %>
   <% end %>
 
   <div>

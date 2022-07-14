@@ -28,6 +28,10 @@ vi:
         del: "Xóa"
         confirm: "Bạn có chắc chắn muốn xóa?"
         posts: "Bài viết của %{author}"
+        count:
+          zero: "Bài viết này có %{count} bình luận"
+          one: "Bài viết này có %{count} bình luận"
+          other: "Bài viết này có %{count} bình luận"
       search:
         form: "Tìm kiếm"
         by_title: "Tiêu đề"

@@ -1,16 +1,10 @@
 module Admin
   class AdminBaseController < ::ApplicationController
     layout 'admin'
-    before_action :check_admin
+    before_action :require_admin_login
 
-    # def require_login
-    #   unless logged_in?
-    #     redirect_to login_path
-    #   end
-    # end
-
-    def check_admin
-      redirect_to root_path unless admin?
+    def require_admin_login
+      redirect_to admin_login_path unless logged_in? && is_admin?
     end
   end
 end

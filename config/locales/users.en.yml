@@ -20,8 +20,9 @@ en:
       index:
         action: "Action"
         search: "Search"
+        roles: "Roles"
       search:
-        by_email: "Email/Username"
+        by_username: "Username"
       show:
         update: "Update"
         password: "Change password"  

@@ -1,47 +1,53 @@
 module Admin
-  class UsersController < AdminBaseController    
+  class UsersController < AdminBaseController
+    include UserAction
+    before_action :load_user, except: %i[index search]
     def index
-      @users = User.order(updated_at: :desc).page(params[:page]).per(5)
+      @users = User.includes(:roles).recent
+      @users = @users.page(params[:page]).per(5)
     end
 
-    def show
-      @user = current_user
-    end  
+    def show; end
+
+    def edit_roles; end
 
     def update
-      @user = current_user
       if @user.update(user_params)
-        flash[:success] = "Profile updated!"
-        redirect_to show
-      end  
+        redirect_to admin_user_path, notice: I18n.t('flash.update.success')
+      else
+        render :show
+      end
     end
-    
+
+    def update_roles
+      # binding.pry
+      change_roles #unless @user == current_user
+      redirect_to edit_roles_admin_user_path, notice: I18n.t('flash.update.success')
+    end
+
     def destroy
-      @user = User.find(params[:id])
-      if admin?
-        @user.destroy
-        redirect_to admin_user_path, status: :see_other
-      else 
-        flash.now[:alert] = "You don't have permission!"
-        redirect_to root_path
-      end  
+      @user.destroy
+      redirect_to admin_users_path
     end
 
     def search
-      @users = User.where("username ILIKE :input or email ILIKE :input",
-                          input: "%#{params[:input]}%").page(params[:page])
+      @users = User.search_by_username(params[:username])
+      @users = @users.page(params[:page])
       render :index
-    end  
-    
-    private
-
-    def user_params
-      params.require(:user).permit(:username, :first_name, :last_name, :email, :birth_date, :password, :password_confirmation)
     end
+
+    private
 
     def search_params
       params.require(:user).permit(:username, :email)
     end
 
+    def change_roles
+      roles = params[:user]
+      roles.each do |k, v|
+        @user.add_role k
+        @user.remove_role k if v == 'cancel'
+      end
+    end
   end
-end  
+end

@@ -202,6 +202,7 @@ GEM
     reline (0.3.1)
       io-console (~> 0.5)
     rexml (3.2.5)
+    rolify (6.0.0)
     rubyzip (2.3.2)
     sassc (2.4.0)
       ffi (~> 1.9)
@@ -260,6 +261,7 @@ DEPENDENCIES
   bootsnap
   capybara
   debug
+  i18n
   importmap-rails
   jbuilder
   kaminari
@@ -270,6 +272,7 @@ DEPENDENCIES
   puma (~> 5.0)
   rails (~> 7.0.3)
   redis (~> 4.0)
+  rolify
   sassc-rails
   selenium-webdriver
   sprockets-rails

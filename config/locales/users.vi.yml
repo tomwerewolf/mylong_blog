@@ -20,8 +20,9 @@ vi:
       index:
         action: "Tác vụ"
         search: "Tìm kiếm"
+        roles: "Phân quyền"
       search:
-        by_email: "Email/Tên đăng nhập"
+        by_username: "Tên đăng nhập"
       show:
         update: "Cập nhật"
         password: "Thay đổi mật khẩu" 

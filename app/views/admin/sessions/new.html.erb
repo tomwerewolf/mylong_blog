@@ -1,7 +1,6 @@
 <h1>Login</h1>
 
-<%= form_for :session, url: login_path do |form| %>
-  <%= render "shared/flash" %>
+<%= form_for :session, url: admin_login_path do |form| %>
   <div>
     <%= form.label t("activerecord.attributes.user.username") %><br>
     <%= form.text_field :username %><br>

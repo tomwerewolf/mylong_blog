@@ -25,6 +25,10 @@ en:
         del: "Delete"
         confirm: "Are you sure you want to delete?"
         posts: "%{author}'s posts"
+        count:
+          zero: "This article has %{count} comment"
+          one: "This article has %{count} comment"
+          other: "This article has %{count} comments"
       search:
         form: "Search"
         by_title: "Title"

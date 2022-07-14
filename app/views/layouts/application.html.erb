@@ -29,7 +29,7 @@
             <li class="active"><%= link_to t("sessions.current.home"), root_path %></li>
             <% Category.order(:name).each do |cat| %>
               <li>
-                <%= link_to cat.name, category_posts_path(cat.name) %>
+                <%= link_to cat.name, category_posts_path(cat) %>
               </li>
             <% end %>  
           </ul>

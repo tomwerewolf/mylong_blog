@@ -22,10 +22,11 @@ vi:
           other: "Đang hiển thị <b>tất cả %{count}</b> %{entry_name}"
       more_pages:
         display_entries: "Đang hiển thị %{entry_name} <b>%{first}&nbsp;-&nbsp;%{last}</b> trên <b>%{total}</b>"    
-  flashs:
+  flash:
     login:
       success: "Đăng nhập thành công"
       fail: "Tên đăng nhập/Email hoặc mật khẩu chưa đúng"
+      noaccess: "Bạn không có quyền truy cập"
     update:
       success: "Cập nhật thành công"
     logout:
@@ -34,4 +35,4 @@ vi:
       mail: "Chúng tôi gửi bạn mail để khôi phục tài khoản"
       reset: "Mật khẩu đã được khôi phục, vui lòng đăng nhập lại"
       again: "Hết giời gian, vui lòng yêu cầu lại"
-      wrong: "Mật khẩu hiện tại không đúng" 
+      wrong: "Mật khẩu hiện tại không đúng"

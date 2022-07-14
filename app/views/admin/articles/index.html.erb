@@ -23,8 +23,8 @@
     </tr>                          
   <% end %>
 </table>
-<%= paginate @articles %><br/>
-<%= page_entries_info @articles %>
+
+<%= render "shared/page", resource: @articles %>
 
 
 

@@ -20,5 +20,5 @@
   </tr>                            
   <% end %>
 </table>
-  <%= paginate @categories %><br/>
-  <%= page_entries_info @categories %>
+
+<%= render "shared/page", resource: @categories %>

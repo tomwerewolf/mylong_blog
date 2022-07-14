@@ -1,4 +1,4 @@
-class CommentsController < ApplicationController
+class CommentsController < ApplicationBaseController
   def create
     @article = load_article
     @comment = @article.comments.new(comment_params)
@@ -9,7 +9,7 @@ class CommentsController < ApplicationController
 
   def destroy
     @article = load_article
-    @comment = @article.comments.find(params[:id])
+    @comment = load_comment
     @comment.destroy
     redirect_to article_path(@article), status: 303
   end
@@ -23,4 +23,8 @@ class CommentsController < ApplicationController
   def load_article
     Article.find(params[:article_id])
   end
+
+  def load_comment
+    Comment.find(params[:id])
+  end  
 end

@@ -1,7 +1,8 @@
 module Admin
   class CategoriesController < AdminBaseController
     def index
-      @categories = Category.page(params[:page]).per(5)
+      @categories = Category.recent
+      @categories = @categories.page(params[:page]).per(5)
     end
 
     def new
@@ -13,7 +14,7 @@ module Admin
       if @category.save
         redirect_to admin_categories_path
       else
-        render :new, status: :unprocessable_entity
+        render :new
       end
     end
 
@@ -26,19 +27,19 @@ module Admin
       if @category.update(category_params)
         redirect_to admin_categories_path
       else
-        render :edit, status: :unprocessable_entity
+        render :edit
       end
     end
 
     def destroy
       @category = load_category
       @category.destroy
-      redirect_to admin_categories_path, status: :see_other
+      redirect_to admin_categories_path
     end
 
     def search
-      @categories = Category.where('name ILIKE :input',
-                                   name: "%#{params[:name]}%").page(params[:page])
+      @categories = Category.search_by_name(params[:name])
+      @categories = @categories.page(params[:page]).per(5)
       render :index
     end
 

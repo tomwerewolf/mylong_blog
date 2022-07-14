@@ -1,4 +1,4 @@
-class PasswordsController < ApplicationController
+class PasswordsController < ApplicationBaseController
   skip_before_action :require_login, except: %i[edit update]
 
   def edit
@@ -9,11 +9,9 @@ class PasswordsController < ApplicationController
     @user = current_user
     if authenticated? && @user.update(password_params)
       log_out
-      flash[:success] = 'Your changes have been saved. Login again!'
-      redirect_to login_path
+      redirect_to login_path, notice: I18n.t('flash.password.reset')
     else
-      flash[:alert] = I18n.t('flashs.password.wrong')
-      render :edit
+      render :edit, notice: I18n.t('flash.password.wrong')
     end
   end
 
@@ -25,7 +23,7 @@ class PasswordsController < ApplicationController
       generate_token
       PasswordMailer.with(user: @user, reset_token: @reset_token).reset_password.deliver_now
     end
-    flash[:success] = I18n.t('flashs.password.mail')
+    flash[:success] = I18n.t('flash.password.mail')
     redirect_to root_path
   end
 
@@ -39,14 +37,13 @@ class PasswordsController < ApplicationController
     if @user.present? && valid_token?
       reset_params = password_params.merge(password_reset_token: nil, password_reset_token_created_at: nil)
       if @user.update(reset_params)
-        @user.update(password_reset_token: nil, password_reset_token_created_at: nil)
-        flash[:success] = I18n.t('flashs.password.reset')
+        flash[:success] = I18n.t('flash.password.reset')
         redirect_to login_path
       else
         render :edit
       end
     else
-      flash[:alert] = I18n.t('flashs.password.again')
+      flash[:alert] = I18n.t('flash.password.again')
       render :edit
     end
   end

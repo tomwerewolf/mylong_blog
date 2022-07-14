@@ -4,7 +4,7 @@
 <br/>
 <table border="1" id="data-table">
   <tr>
-    <th><%= t("activerecord.attributes.user.admin") %></th>
+    <th><%= t("users.views.index.roles") %></th>
     <th><%= t("activerecord.attributes.user.username") %></th>
     <th><%= t("activerecord.attributes.user.email") %></th>
     <th><%= t("activerecord.attributes.user.full_name") %></th>
@@ -13,12 +13,12 @@
   </tr>
   <% @users.each do |user| %>
     <tr>
-      <td><%= user.admin %></td>
-      <td><%= user.username %></td>
+      <td><%= user.roles.pluck(:name).join(', ') %></td>
+      <td><%= link_to user.username, admin_user_path(user) %></td>
       <td><%= user.email %></td>
       <td><%= user.full_name %></td>
       <td><%= user.articles_count %></td>
-      <td><%#= link_to t("articles.views.show.edit"), edit_admin_user_path(user) %>
+      <td><%= link_to t("users.views.index.roles"), edit_roles_admin_user_path(user) %> | 
           <%= link_to t("articles.views.show.del"), admin_user_path(user), data: {
                               turbo_method: :delete,
                               turbo_confirm: t("articles.views.show.confirm")
@@ -26,6 +26,6 @@
     </tr>                          
   <% end %>
 </table>
-<%= paginate @users %><br/>
-<%= page_entries_info @users %>
+
+<%= render "shared/page", resource: @users %>
 

@@ -1,65 +1,37 @@
 module Admin
   class ArticlesController < AdminBaseController
+    include ArticleAction
     def index
-      @articles = Article.includes(:category).order(updated_at: :desc).page(params[:page]).per(5)
+      @articles = Article.includes(:category).order(updated_at: :desc)
+      @articles = @articles.page(params[:page]).per(5)
     end
 
     def show
-      @article = load_article
-      #raise ActiveRecord::RecordNotFound if @article.personal? && !author?(@article)
-
-      @comments = Comment.includes(:user).where(article: @article)
+      @article = Article.includes(comments: :user).find(params[:id])
       @author = @article.user
     end
 
-    def new
-      @article = Article.new
-    end
-
-    def edit
-      @article = load_article
-    end
+    def edit; end
 
     def update
-      @article = load_article
-
-      if admin? && @article.update(article_params)
+      if @article.update(article_params)
+        @article.image.purge if params[:article][:delete_image] == 'delete'
         redirect_to admin_articles_path
       else
-        render :edit, status: :unprocessable_entity
+        render :edit
       end
     end
 
     def destroy
-      @article = load_article
-      if admin?
-        @article.destroy
-        redirect_to my_posts_path, status: :see_other
-      else
-        flash.now[:alert] = "You don't have permission!"
-        redirect_to admin_articles_path
-      end
+      @article.destroy
+      redirect_to admin_articles_path
     end
 
     def search
-      @articles = Article.all
+      @articles = Article.includes(:category).order(updated_at: :desc)
       @articles = Articles::SearchService.new(articles: @articles, params: params).call
       @articles = @articles.page(params[:page]).per(5)
       render :index
-    end
-
-    def my_posts
-      @articles = current_user.articles.page(params[:page]).per(5)
-    end
-
-    private
-
-    def article_params
-      params.require(:article).permit(:title, :body, :status, :category_id, :image)
-    end
-
-    def load_article
-      Article.find(params[:id])
     end
   end
 end

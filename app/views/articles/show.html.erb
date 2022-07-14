@@ -18,6 +18,8 @@
   <% end %>                        
 </ul>
 
+<p><%= t("articles.views.show.count", count: @article.comments_count) %></p>
+
 <h2><%= t("comments.views.cmt") %></h2>
 <%= render @article.comments %>
 

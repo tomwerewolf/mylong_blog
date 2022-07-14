@@ -52,6 +52,10 @@ gem "kaminari"
 
 gem 'mini_magick'
 
+gem 'rolify'
+
+gem 'i18n'
+
 group :development, :test do
   gem "pry-byebug"
   gem "letter_opener_web"

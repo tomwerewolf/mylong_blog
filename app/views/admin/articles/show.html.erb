@@ -1,26 +1,22 @@
 <h1><%= @article.title %></h1>
 
-<p>Posted by <%=link_to @author.full_name, user_posts_path(@author) %></p>
+<p>Posted by <%=@author.full_name %></p>
 
 <% if @article.image.attached? %>
-<%= image_tag @article.image, height: 200 %><br>
+  <%= image_tag @article.image, height: 200 %><br>
+  <%= form.label :delete_image %>
+  <%= form.check_box :delete_image, { checked: false }, "delete", "keep" %>
 <% end %>
 
 <p><%= @article.body %></p>
 
 <ul>
-  <% if admin? || current_user == @author %>
-    <li><%= link_to t("articles.views.show.edit"), edit_admin_article_path(@article) %></li>
-    <li><%= link_to t("articles.views.show.del"), admin_article_path(@article), data: {
-                              turbo_method: :delete,
-                              turbo_confirm: t("articles.views.show.confirm")
-                              } %></li>
-  <% end %>                        
+  <li><%= link_to t("articles.views.show.edit"), edit_admin_article_path(@article) %></li>
+  <li><%= link_to t("articles.views.show.del"), admin_article_path(@article), data: {
+                            turbo_method: :delete,
+                            turbo_confirm: t("articles.views.show.confirm")
+                            } %></li>                       
 </ul>
 
-<h2><%= t("comments.views.cmt") %></h2>
-<%= render @comments %>
-
-<h2><%= t("comments.views.add") %></h2>
-<%= render 'comments/form' %>
+<p><%= t("articles.views.show.count", count: @article.comments_count) %></p>
 

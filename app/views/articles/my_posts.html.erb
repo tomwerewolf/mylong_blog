@@ -5,6 +5,7 @@
 <table border="1" id="data-table">
     <tr>
     <th><%= t("activerecord.models.articles") %></th>
+    <th></th>
     <th><%= t("activerecord.attributes.article.status") %></th>
     <th><%= t("activerecord.attributes.article.comments_count") %></th>
     <th><%= t("articles.views.index.action") %></th>
@@ -12,6 +13,7 @@
       <% @articles.each do |article| %>
     <tr>
       <td><%= link_to article.title, article_path(article) %></td>
+      <td><%= article.category.name %></td>
       <td><%= article.status %></td>
       <td><%= article.comments_count %></td>
       <td><%= link_to t("articles.views.show.edit"), edit_article_path(article) %> |
@@ -22,8 +24,7 @@
     </tr>
   <% end %>
 </table>
-  <%= paginate @articles %><br/>
-  <%= page_entries_info @articles %>
+<%= render "shared/page", resource: @articles %>
 
 
 

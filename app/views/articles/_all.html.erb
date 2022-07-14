@@ -7,6 +7,5 @@
       <%= link_to article.title, article %>
     </li>
   <% end %> 
-  <%= paginate articles %><br/>
-  <%= page_entries_info articles %>
+  <%= render "shared/page", resource: articles %>
 </ul>
