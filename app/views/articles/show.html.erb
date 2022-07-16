@@ -1,6 +1,6 @@
 <h1><%= @article.title %></h1>
 
-<p>Posted by <%=link_to @author.full_name, user_posts_path(@author) %></p>
+<p>Posted by <%=link_to @author.full_name, posts_user_path(@author) %></p>
 
 <% if @article.image.attached? %>
 <%= image_tag @article.image, height: 200 %><br>
@@ -17,8 +17,6 @@
                               } %></li>
   <% end %>                        
 </ul>
-
-<p><%= t("articles.views.show.count", count: @article.comments_count) %></p>
 
 <h2><%= t("comments.views.cmt") %></h2>
 <%= render @article.comments %>

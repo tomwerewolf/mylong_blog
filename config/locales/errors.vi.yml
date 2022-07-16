@@ -31,6 +31,7 @@ vi:
       present: phải để trống
       required: phải tồn tại
       taken: đã bị trùng
+      no_digits: chỉ chấp nhận chữ
       too_long:
         one: quá dài (tối đa 1 ký tự)
         other: quá dài (tối đa %{count} 10 ký tự)

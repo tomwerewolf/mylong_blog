@@ -1,11 +1,11 @@
 vi: 
   activerecord:
     models:
-      category: "Danh mục"
-      categories: "Danh mục"
+      category: "Thể loại"
+      categories: "Thể loại"
     attributes:
       category:
-        name: "Danh mục"
+        name: "Thể loại"
         articles_count: "Bài viết"
   categories:
     views:

@@ -5,8 +5,12 @@ class User < ApplicationRecord
   has_many :articles, dependent: :destroy
   has_many :comments, dependent: :destroy
 
-  validates :first_name, :last_name, :birth_date, presence: true
+  NAME_REGEX = /^[a-zA-Z\s]*$/
+
+  validates :birth_date, presence: true
   validates :email, :username, presence: true, uniqueness: true
+  validates :first_name, :last_name, presence: true,
+                                     format: { with: NAME_REGEX, multiline: true, message: I18n.t('errors.messages.no_digits') }
   validate :check_birth_date
 
   before_validation :fill_full_name, :downcase_fields

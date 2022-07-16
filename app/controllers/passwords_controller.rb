@@ -11,7 +11,8 @@ class PasswordsController < ApplicationBaseController
       log_out
       redirect_to login_path, notice: I18n.t('flash.password.reset')
     else
-      render :edit, notice: I18n.t('flash.password.wrong')
+      flash[:notice] = I18n.t('flash.password.wrong')
+      render :edit
     end
   end
 
@@ -40,7 +41,7 @@ class PasswordsController < ApplicationBaseController
         flash[:success] = I18n.t('flash.password.reset')
         redirect_to login_path
       else
-        render :edit
+        render :edit, status: :unprocessable_entity
       end
     else
       flash[:alert] = I18n.t('flash.password.again')
@@ -55,7 +56,7 @@ class PasswordsController < ApplicationBaseController
   end
 
   def authenticated?
-    @user.authenticate(params[:user][:current_password]).present?
+    @user.authenticate(params[:user][:current_password])
   end
 
   def generate_token

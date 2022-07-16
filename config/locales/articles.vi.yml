@@ -9,6 +9,8 @@ vi:
         body: "Nội dung"
         status: "Trạng thái"
         comments_count: "Bình luận"
+        image: "Hình ảnh"
+        author: "Tác giả"
   articles:   
     views:
       my_post: "Bài viết của tôi"
@@ -32,6 +34,7 @@ vi:
           zero: "Bài viết này có %{count} bình luận"
           one: "Bài viết này có %{count} bình luận"
           other: "Bài viết này có %{count} bình luận"
+        check: "Delete image"   
       search:
         form: "Tìm kiếm"
         by_title: "Tiêu đề"

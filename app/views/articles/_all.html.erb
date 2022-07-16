@@ -1,11 +1,18 @@
-<%= render "shared/flash" %>
 <h1><%= t("articles.views.index.head") %></h1>
 
-<ul>
-  <% articles.each do |article| %>
-    <li>
-      <%= link_to article.title, article %>
-    </li>
-  <% end %> 
-  <%= render "shared/page", resource: articles %>
-</ul>
+<div class="row">
+  <div class="leftcolumn">
+    <div class="card">
+      <% articles.each do |article| %>
+      <h2><%= link_to article.title, article %></h2>
+      <%# <div class="fakeimg">
+      <% if article.image.attached? %>
+        <%#= image_tag article.image, height: 300 %>
+      <%# end %>
+      <%#/div> %>
+      <p><%= article.body %></p>
+      <% end %>
+      <%= render "shared/page", resource: articles %>
+    </div>
+  </div>
+</div>    

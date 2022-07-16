@@ -6,8 +6,11 @@ Rails.application.routes.draw do
   root 'articles#index'
 
   get 'profile', to: 'users#show'
-  get 'users/:id/posts', to: 'users#posts', as: 'user_posts'
-  resources :users
+  resources :users do
+    member do
+      get :posts
+    end
+  end
 
   get 'login', to: 'sessions#new'
   post 'login', to: 'sessions#create'
@@ -22,14 +25,14 @@ Rails.application.routes.draw do
   patch 'password/reset', to: 'passwords#reset'
 
   get '/categories/:id', to: 'articles#category_posts', as: 'category_posts'
-
+  get 'my_posts', to: 'articles#my_posts'
+  
   resources :categories
 
   resources :articles do
     resources :comments
     collection do
       get :search
-      get :my_posts
     end
   end
 
@@ -44,6 +47,7 @@ Rails.application.routes.draw do
       resources :comments
       collection do
         get :search
+        delete :destroy_selected
       end
     end
     get 'profile', to: 'users#show'

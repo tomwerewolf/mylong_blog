@@ -1,18 +1,25 @@
 <%= render "search" %>
 <h1><%= t("activerecord.models.article") %></h1>
 <br/>
+<%= link_to t("articles.views.index.new"), new_admin_article_path %>
+<%= form_tag destroy_selected_admin_articles_path(article_ids: params[:article_ids]),
+                method: :delete, data: {turbo_confirm: t("articles.views.show.confirm")} %>
 <table border="1" id="data-table">
   <tr>
+    <th></th>
     <th><%= t("activerecord.attributes.article.article") %></th>
-    <th><%= t("activerecord.attributes.article.article") %></th>
+    <th><%= t("activerecord.attributes.category.name") %></th>
+    <th><%= t("activerecord.attributes.article.author") %></th>
     <th><%= t("activerecord.attributes.article.status") %></th>
     <th><%= t("activerecord.attributes.article.comments_count") %></th>
     <th><%= t("articles.views.index.action") %></th>
   </tr>
   <% @articles.each do |article| %>
     <tr>
+      <td><%= check_box_tag "article_ids[]", article.id, false %></td>
       <td><%= link_to article.title, admin_article_path(article) %></td>
       <td><%= article.category.name %></td>
+      <td><%= article.user.full_name %></td>
       <td><%= article.status %></td>
       <td><%= article.comments_count %></td>
       <td><%= link_to t("articles.views.show.edit"), edit_admin_article_path(article) %> |
@@ -23,6 +30,9 @@
     </tr>                          
   <% end %>
 </table>
+
+
+  <%= submit_tag t("articles.views.show.del")%>
 
 <%= render "shared/page", resource: @articles %>
 

@@ -1,6 +1,7 @@
 class ArticlesController < ApplicationBaseController
   skip_before_action :require_login, except: %i[new create edit update]
-  include ArticleAction
+  before_action :load_article, only: %i[edit update destroy]
+
   def index
     @articles = Article.public_show
     @articles = @articles.page(params[:page]).per(5)
@@ -13,13 +14,17 @@ class ArticlesController < ApplicationBaseController
     @author = @article.user
   end
 
+  def new
+    @article = Article.new
+  end
+
   def create
     @article = current_user.articles.new(article_params)
 
     if @article.save
       redirect_to article_path(@article)
     else
-      render :new
+      render :new, status: :unprocessable_entity
     end
   end
 
@@ -39,18 +44,36 @@ class ArticlesController < ApplicationBaseController
       @article.image.purge if params[:article][:delete_image] == 'delete'
       redirect_to article_path(@article)
     else
-      render :edit
+      render :edit, status: :unprocessable_entity
     end
   end
 
   def destroy
-    @article.image.purge
     @article.destroy
-    redirect_to my_posts_path
+    redirect_to my_posts_path, status: :see_other
   end
 
   def category_posts
     @articles = Article.joins(:category).public_show.where(category_id: params[:id])
     @articles = @articles.page(params[:page]).per(5)
+  end
+
+  def my_posts
+    @articles = Article.includes(:category).where(user: current_user)
+    @articles = @articles.page(params[:page]).per(5)
+  end
+
+  private
+
+  def article_params
+    params.require(:article).permit(:title, :body, :status, :category_id, :image)
+  end
+
+  def search_params
+    params.permit(:title, :category_id, :date_from, :date_to, :commit)
+  end
+
+  def load_article
+    @article = Article.find(params[:id])
   end
 end

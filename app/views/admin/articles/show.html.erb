@@ -1,11 +1,9 @@
 <h1><%= @article.title %></h1>
 
-<p>Posted by <%=@author.full_name %></p>
+<p>Posted by <%= @author.full_name %></p>
 
 <% if @article.image.attached? %>
   <%= image_tag @article.image, height: 200 %><br>
-  <%= form.label :delete_image %>
-  <%= form.check_box :delete_image, { checked: false }, "delete", "keep" %>
 <% end %>
 
 <p><%= @article.body %></p>
@@ -17,6 +15,4 @@
                             turbo_confirm: t("articles.views.show.confirm")
                             } %></li>                       
 </ul>
-
-<p><%= t("articles.views.show.count", count: @article.comments_count) %></p>
 
