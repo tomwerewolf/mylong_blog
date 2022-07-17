@@ -22,7 +22,7 @@
 
   <div>
     <%= form.label :birth_date %><br>
-    <%= form.date_field :birth_date, max: Date.today - 18.years %><br>
+    <%= form.date_select :birth_date, start_year: 1930 %><br>
   </div>
 
   <div>

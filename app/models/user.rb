@@ -31,7 +31,7 @@ class User < ApplicationRecord
   end
 
   def check_birth_date
-    errors.add(:birth_date, I18n.t('activerecord.errors.messages.adult')) if birth_date > 18.years.ago
+    errors.add(:birth_date, I18n.t('activerecord.errors.messages.adult')) if birth_date >= 16.years.ago
   end
 
   def assign_default_role

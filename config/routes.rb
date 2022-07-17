@@ -33,6 +33,7 @@ Rails.application.routes.draw do
     resources :comments
     collection do
       get :search
+      delete :destroy_selected
     end
   end
 

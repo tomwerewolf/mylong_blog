@@ -63,6 +63,11 @@ class ArticlesController < ApplicationBaseController
     @articles = @articles.page(params[:page]).per(5)
   end
 
+  def destroy_selected
+    Article.where(id: params[:article_ids]).destroy_all if params[:article_ids]
+    redirect_to my_posts_path
+  end
+
   private
 
   def article_params

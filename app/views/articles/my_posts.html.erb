@@ -1,9 +1,11 @@
 <h1><%= t("articles.views.my_post") %></h1>
 
 <%= link_to t("articles.views.index.new"), new_article_path %>
-<br/>
+<%= form_tag destroy_selected_articles_path(article_ids: params[:article_ids]),
+                method: :delete, data: {turbo_confirm: t("articles.views.show.confirm")} %>
 <table border="1" id="data-table">
     <tr>
+    <th></th>
     <th><%= t("activerecord.models.articles") %></th>
     <th><%= t("activerecord.attributes.category.name") %></th>
     <th><%= t("activerecord.attributes.article.status") %></th>
@@ -12,6 +14,7 @@
     </tr>
       <% @articles.each do |article| %>
     <tr>
+      <td><%= check_box_tag "article_ids[]", article.id, false %></td>
       <td><%= link_to article.title, article_path(article) %></td>
       <td><%= article.category.name %></td>
       <td><%= article.status %></td>
@@ -24,6 +27,7 @@
     </tr>
   <% end %>
 </table>
+<%= submit_tag t("articles.views.show.del")%>
 <%= render "shared/page", resource: @articles %>
 
 
