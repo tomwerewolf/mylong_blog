@@ -10,7 +10,7 @@ class CommentsController < ApplicationBaseController
   def destroy
     @article = load_article
     @comment = load_comment
-    @comment.destroy
+    @comment.destroy if author?(@comment)
     redirect_to article_path(@article), status: 303
   end
 

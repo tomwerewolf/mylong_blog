@@ -40,7 +40,7 @@ class ArticlesController < ApplicationBaseController
   end
 
   def update
-    if @article.update(article_params)
+    if @article.update(article_params) && author?(@article)
       @article.image.purge if params[:article][:delete_image] == 'delete'
       redirect_to article_path(@article)
     else
@@ -49,7 +49,7 @@ class ArticlesController < ApplicationBaseController
   end
 
   def destroy
-    @article.destroy
+    @article.destroy if author?(@article)
     redirect_to my_posts_path, status: :see_other
   end
 
@@ -64,7 +64,9 @@ class ArticlesController < ApplicationBaseController
   end
 
   def destroy_selected
-    Article.where(id: params[:article_ids]).destroy_all if params[:article_ids]
+    @articles = Article.where(user: current_user)
+    @articles = @articles.where(id: params[:article_ids])
+    @articles.destroy_all if params[:article_ids]
     redirect_to my_posts_path
   end
 
