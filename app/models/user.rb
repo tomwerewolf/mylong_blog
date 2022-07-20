@@ -4,6 +4,7 @@ class User < ApplicationRecord
 
   has_many :articles, dependent: :destroy
   has_many :comments, dependent: :destroy
+  has_many :user_tokens, dependent: :destroy
 
   NAME_REGEX = /^[a-zA-Z\s]*$/
 
@@ -18,6 +19,18 @@ class User < ApplicationRecord
 
   scope :recent, -> { order(updated_at: :desc) }
   scope :search_by_username, ->(username) { where('username ILIKE :username', username: "%#{username}%") }
+
+  def result
+    as_json(only: %i[id username email], methods: :access_token)
+  end
+
+  def profile
+    as_json(except: %i[password_digest password_reset_token password_reset_token_created_at])
+  end
+
+  def access_token
+    user_tokens.first.token
+  end
 
   private
 
