@@ -1,0 +1,12 @@
+<h1><%= t("users.views.forgot") %></h1>
+  <%= form_with url: password_forgot_path do |form| %>
+
+    <div>
+      <%= form.label :email %><br>
+      <%= form.email_field :email %><br>
+    </div>
+
+    <div>
+      <%= form.submit t("users.views.reset") %>
+    </div>
+<% end %> 

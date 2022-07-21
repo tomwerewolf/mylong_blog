@@ -1,0 +1,17 @@
+vi: 
+  activerecord:
+    models:
+      category: "Thể loại"
+      categories: "Thể loại"
+    attributes:
+      category:
+        name: "Thể loại"
+        articles_count: "Bài viết"
+  categories:
+    views:
+      index:
+        action: "Tác vụ"
+      show:
+        update: 'Cập nhật'
+      new: "Thêm mới"     
+

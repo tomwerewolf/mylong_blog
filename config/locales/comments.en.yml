@@ -1,0 +1,15 @@
+en:
+  activerecord:
+    models:
+      comment: "Comment"
+      comments: "Comments"
+    attributes:
+      comment: 
+        body: "Comment"
+  comments:  
+    views:
+      cmt: "Comment"
+      cmter: "User"
+      add: "Add comment"
+      create: "Send"
+      del: "Delete"

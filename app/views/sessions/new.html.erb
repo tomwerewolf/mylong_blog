@@ -1,0 +1,22 @@
+<h1><%= t('sessions.views.login') %></h1>
+
+<%= form_for :session, url: login_path do |form| %>
+  <div>
+    <%= form.label t("activerecord.attributes.user.username") %><br>
+    <%= form.text_field :username %><br>
+  </div>
+
+  <div>
+    <%= form.label t("activerecord.attributes.user.password") %><br>
+    <%= form.password_field :password %><br>
+    <%= link_to t("sessions.views.forgot"), password_forgot_path %>
+  </div>
+
+  <div>
+    <%= form.submit t("sessions.views.login")%>
+  </div>
+
+  <div>
+    <%= link_to t("sessions.views.register"), new_user_path %>
+  </div>
+<% end %>

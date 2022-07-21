@@ -1,0 +1,18 @@
+<h1><%= @article.title %></h1>
+
+<p>Posted by <%= @author.full_name %></p>
+
+<% if @article.image.attached? %>
+  <%= image_tag @article.image, height: 200 %><br>
+<% end %>
+
+<p><%= @article.body %></p>
+
+<ul>
+  <li><%= link_to t("articles.views.show.edit"), edit_admin_article_path(@article) %></li>
+  <li><%= link_to t("articles.views.show.del"), admin_article_path(@article), data: {
+                            turbo_method: :delete,
+                            turbo_confirm: t("articles.views.show.confirm")
+                            } %></li>                       
+</ul>
+

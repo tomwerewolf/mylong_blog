@@ -1,0 +1,38 @@
+vi:
+  errors:
+    messages:
+      not_saved: "Không thể lưu!"
+  date:
+    formats:
+      default: "%d-%m-%Y"
+      short: "%b %d"
+      long: "%B %d, %Y"
+  views:  
+    pagination:
+      first: "Trang đầu"
+      last: "Trang cuối"
+      previous: "Trước"
+      next: "Sau"
+  helpers:
+    page_entries_info:
+      one_page:
+        display_entries:
+          zero: "Không tìm thấy %{entry_name} nào"
+          one: "Đang hiển thị <b>1</b> %{entry_name}"
+          other: "Đang hiển thị <b>tất cả %{count}</b> %{entry_name}"
+      more_pages:
+        display_entries: "Đang hiển thị %{entry_name} <b>%{first}&nbsp;-&nbsp;%{last}</b> trên <b>%{total}</b>"    
+  flash:
+    login:
+      success: "Đăng nhập thành công"
+      fail: "Tên đăng nhập/Email hoặc mật khẩu chưa đúng"
+      noaccess: "Bạn không có quyền truy cập"
+    update:
+      success: "Cập nhật thành công"
+    logout:
+      success: "Đăng xuất thành công"  
+    password:
+      mail: "Chúng tôi gửi bạn mail để khôi phục tài khoản"
+      reset: "Mật khẩu đã được khôi phục, vui lòng đăng nhập lại"
+      again: "Hết giời gian, vui lòng yêu cầu lại"
+      wrong: "Mật khẩu hiện tại không đúng"

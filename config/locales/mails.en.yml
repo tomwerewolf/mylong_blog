@@ -1,0 +1,15 @@
+en:
+  mails:
+    subjects:
+      password_reset: "Reset your password"
+      welcome: "Welcome to Mylong Blog"
+    welcome:  
+      welcome_to: "Welcom %{user} to Mylong Blog!"
+      success: "You have successfully signed up to example.com, your username is: %{user}."
+      instruction: "To login to the site, just follow this link: %{link}."
+      thank: "Thanks for joining and have a great day!"  
+    reset:
+      hi: "Hi %{user}!"
+      announce: "You just requested a password reset."
+      instruction: "Click #{link} to reset your password."
+      notice: "Notice: The request is only available in 5 minutes!"    

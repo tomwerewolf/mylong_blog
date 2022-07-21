@@ -1,0 +1,12 @@
+vi:
+  sessions:
+    current:
+      home: 'Final Blog'
+      welcome: 'Xin chào'
+      logout: 'Đăng xuất'
+      eng: 'Tiếng Anh'
+      viet: 'Tiếng Việt'  
+    views:
+      login: "Đăng nhập"
+      register: "Đăng ký"
+      forgot: "Quên mật khẩu"

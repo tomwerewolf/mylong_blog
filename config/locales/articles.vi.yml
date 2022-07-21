@@ -1,0 +1,43 @@
+vi: 
+  activerecord:
+    models:
+      article: "Bài viết"
+      articles: "Bài viết"
+    attributes:
+      article:
+        title: "Tiêu đề"
+        body: "Nội dung"
+        status: "Trạng thái"
+        comments_count: "Bình luận"
+        image: "Hình ảnh"
+        author: "Tác giả"
+  articles:   
+    views:
+      my_post: "Bài viết của tôi"
+      index:
+        title: "Tiêu đề"
+        status: "Trạng thái"
+        cmt: "Bình luận"
+        action: "Tác vụ"
+        head: 'Bài viết'
+        search: 'Tìm kiếm'
+        new: 'Tạo mới'
+        count:
+          one: "Blog chúng ta có %{count} bài viết!"
+          other: "Blog chúng ta có %{count} bài viết!"
+      show:
+        edit: "Cập nhật"
+        del: "Xóa"
+        confirm: "Bạn có chắc chắn muốn xóa?"
+        posts: "Bài viết của %{author}"
+        count:
+          zero: "Bài viết này có %{count} bình luận"
+          one: "Bài viết này có %{count} bình luận"
+          other: "Bài viết này có %{count} bình luận"
+        check: "Delete image"   
+      search:
+        form: "Tìm kiếm"
+        by_title: "Tiêu đề"
+        by_cat: "Thể loại"
+        from: "Từ ngày"
+        to: "đến" 

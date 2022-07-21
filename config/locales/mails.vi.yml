@@ -1,0 +1,10 @@
+vi:
+  mails:
+    subjects:
+      password_reset: "Khôi phục lại mật khẩu"
+      welcome: "Chào bạn đến với Mylong Blog"
+    welcome:
+      welcome_to: "Chào %{user} đến với Mylong Blog!"
+      success: "Bạn đã đăng ký thành công vào example.com, tên đăng nhập của bạn là: %{user}"
+      instruction: "Để login, hãy bấm vào đường link: %{link}"
+      thank: "Cám ơn, và chúc bạn 1 ngày tốt lành!"

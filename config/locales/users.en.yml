@@ -1,0 +1,33 @@
+en:
+  activerecord:
+    models:
+      user: "User"
+      users: "Users"
+    attributes:
+      user:
+        username: "Username"
+        first_name: "First Name"
+        last_name: "Last Name"
+        full_name: "Full name"
+        email: "Email"
+        birth_date: "Date of birth"
+        password: "Password"
+        password_confirmation: "Confirm password"
+        current_password: "Current password"
+        articles_count: "Articles"
+  users:
+    views:
+      index:
+        action: "Action"
+        search: "Search"
+        roles: "Roles"
+      search:
+        by_username: "Username"
+      show:
+        update: "Update"
+        password: "Change password"  
+      new:
+        register: "Register"
+      forgot: "Forot your password"
+      reset: "Reset password" 
+

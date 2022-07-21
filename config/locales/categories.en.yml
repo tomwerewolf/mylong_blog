@@ -1,0 +1,14 @@
+en: 
+  activerecord:
+    models:
+      category: "Category"
+      categories: "Categories"
+    attributes:
+      category:
+        name: "Category"
+        articles_count: "Articles"
+  categories:
+    views:
+      index:
+        action: "Action"
+      new: "New category"         

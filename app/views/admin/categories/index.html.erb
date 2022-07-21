@@ -1,0 +1,24 @@
+<%= render "search" %>
+<h1><%= t("activerecord.models.category") %></h1>
+<%= link_to t("categories.views.new"), new_admin_category_path %>
+<br/>
+<table border="1" id="data-table">
+  <tr>
+    <th><%= t("activerecord.attributes.category.name") %></th>
+    <th><%= t("activerecord.attributes.category.articles_count") %></th>
+    <th><%= t("categories.views.index.action") %></th>
+  </tr>
+  <% @categories.each do |category| %>
+  <tr>
+    <td><%= category.name %></td>
+    <td><%= category.articles_count %></td>
+    <td><%= link_to t("articles.views.show.edit"), edit_admin_category_path(category) %> |
+        <%= link_to t("articles.views.show.del"), admin_category_path(category), data: {
+                              turbo_method: :delete,
+                              turbo_confirm: t("articles.views.show.confirm")
+                              } %></td>
+  </tr>                            
+  <% end %>
+</table>
+
+<%= render "shared/page", resource: @categories %>

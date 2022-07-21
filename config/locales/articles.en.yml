@@ -1,0 +1,40 @@
+en: 
+  activerecord:
+    models:
+      article: "Article"
+      articles: "Articles"
+    attributes:
+      article:
+        title: "Title"
+        body: "Body"
+        status: "Status"
+        comments_count: "Comments"
+        image: "Image"
+        author: "Author"
+  articles:  
+    views:
+      my_post: "My posts"
+      index:
+        head: 'Articles'
+        action: "Action"
+        search: 'Search'
+        new: 'Create new'
+        count:
+          one: "Our blog has %{count} article and counting!"
+          other: "Our blog has %{count} articles and counting!"
+      show:
+        edit: "Edit"
+        del: "Delete"
+        confirm: "Are you sure you want to delete?"
+        posts: "%{author}'s posts"
+        count:
+          zero: "This article has %{count} comment"
+          one: "This article has %{count} comment"
+          other: "This article has %{count} comments"
+        check: "Delete image"  
+      search:
+        form: "Search"
+        by_title: "Title"
+        by_cat: "Category"
+        from: "Created from"
+        to: "to"  

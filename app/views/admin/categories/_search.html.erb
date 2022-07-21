@@ -1,0 +1,6 @@
+<h3><%= t("articles.views.index.search") %></h3>
+<%= form_tag search_admin_categories_path, method: :get do |form| %>
+  <%= label_tag t("activerecord.attributes.category.name") %>
+  <%= text_field_tag :name, params[:name] %>
+  <%= submit_tag t("users.views.index.search") %>
+<% end %>

@@ -1,0 +1,12 @@
+
+<h1><%= I18n.t("mails.welcome.welcome_to", user: @user.full_name) %></h1>
+<p>
+  <%= I18n.t("mails.welcome.success", user: @user.username) %><br>
+</p>
+<p>
+  <%= I18n.t("mails.welcome.instruction", link: @url) %>
+</p>
+<p>
+  <%= I18n.t("mails.welcome.thank") %>
+</p>
+
