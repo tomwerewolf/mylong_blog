@@ -50,13 +50,6 @@ module Api
 
       def my_posts
         @articles = Article.includes(:category).where(user: current_user)
-        render json: @@articles, status: :ok
-      end
-
-      def destroy_selected
-        @articles = Article.where(user: current_user)
-        @articles = @articles.where(id: params[:article_ids])
-        @articles.destroy_all if params[:article_ids]
         render json: @articles, status: :ok
       end
 

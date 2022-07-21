@@ -95,7 +95,7 @@ Rails.application.routes.draw do
       resources :articles do
         resources :comments, only: [:create, :destroy]
         collection do
-          delete :destroy_selected
+          resource :bulk_articles, only: [:destroy]
         end
       end
     end
